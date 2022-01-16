@@ -1,10 +1,14 @@
 const express = require("express");
+const path = require("path");
 
 const app = express();
 
-app.get("/", (req, res) => {
-  res.send("Hello world");
-});
+// Middlewares
+app.use(express.static(path.join(__dirname, "public")));
+
+// app.get("/", (req, res) => {
+//   res.send("Hello world");
+// });
 
 const port = process.env.PORT || 3000;
 

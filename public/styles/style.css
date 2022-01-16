@@ -1,0 +1,14 @@
+.title {
+  text-align: center;
+}
+
+.button {
+  color: #fff;
+  background-color: blue;
+  border-radius: 8px;
+}
+
+.button__large {
+  width: fit-content;
+  padding: 10px;
+}
