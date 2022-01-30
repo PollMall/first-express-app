@@ -1,9 +1,11 @@
 const express = require("express");
+const router = require("./router");
 
 const app = express();
 
 // Middlewares
 app.use(logger);
+app.use(router);
 
 app.get("/", (req, res) => {
   res.send("get on /");
@@ -11,6 +13,12 @@ app.get("/", (req, res) => {
 
 app.get("/test", (req, res) => {
   res.send("get on /test");
+});
+
+app.all("/users/:id", (req, res) => {
+  const userId = req.params.id;
+
+  res.send(`app ${req.method} on /users/${userId}`);
 });
 
 app.all("*", (req, res) => {
