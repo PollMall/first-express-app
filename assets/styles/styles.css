@@ -1,0 +1,37 @@
+@import url("./header.css");
+@import url("./footer.css");
+@import url("./todo.css");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap");
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Noto Sans", sans-serif;
+}
+
+* {
+  --primary-color: #74bdcb;
+  --primary-light-color: #e7f2f8;
+  --secondary-color: #ffa384;
+  --neutral-background-color: #efe7bc;
+  --neutral-white-color: #fff;
+  --neutral-black-color: #000;
+}
+
+body {
+  background-color: var(--neutral-background-color);
+}
+
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 50px;
+  border-top: 5px solid #000;
+  border-bottom: 5px solid #000;
+  width: fit-content;
+  padding: 50px 100px;
+}

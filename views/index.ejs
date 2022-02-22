@@ -4,24 +4,16 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="/assets/styles.css" rel="stylesheet" type="text/css" />
     <title>TODO List</title>
+    <link href="/assets/styles/styles.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
-    <header class="header">
-      <h2>Todo app</h2>
-      <navbar>
-        <ul class="navbar">
-          <li class="navbar__item">Add todo</li>
-          <li class="navbar__item">View list</li>
-        </ul>
-      </navbar>
-    </header>
+    <%- include("./partials/header.ejs"); %>
 
     <main>
-      <div class="content">Some form</div>
+      <div class="content"><% [...new Array(10)].map(() => { %> <%- include("./partials/todo.ejs"); %> <% }); %></div>
     </main>
 
-    <footer><p>PollMall <%= (new Date()).getFullYear() %>. All rights reserved.</p></footer>
+    <%- include("./partials/footer.ejs"); %>
   </body>
 </html>

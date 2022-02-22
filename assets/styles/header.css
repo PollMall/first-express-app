@@ -1,0 +1,17 @@
+.header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+  padding: 10px;
+  background-color: var(--primary-light-color);
+}
+
+.header__logo {
+  width: 100px;
+  height: 100px;
+}
+
+.header__text {
+  font-size: 64px;
+}
