@@ -11,7 +11,11 @@
     <%- include("./partials/header.ejs"); %>
 
     <main>
-      <div class="content"><% [...new Array(10)].map(() => { %> <%- include("./partials/todo.ejs"); %> <% }); %></div>
+      <div class="content">
+        <% [...new Array(10)].map(() => { %>
+          <%- include("./partials/todo.ejs", { title: 'title', description: 'lorem ipsum dolot simet' }); %>
+        <% }); %>
+      </div>
     </main>
 
     <%- include("./partials/footer.ejs"); %>
