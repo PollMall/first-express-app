@@ -8,7 +8,11 @@ app.set("view engine", "ejs");
 app.use("/assets", express.static(path.join(__dirname, "assets")));
 
 app.get("/", (req, res) => {
-  res.render("index");
+  res.render("home");
+});
+
+app.get("/add", (req, res) => {
+  res.render("add");
 });
 
 const port = process.env.PORT || 3000;

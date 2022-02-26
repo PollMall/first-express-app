@@ -10,8 +10,8 @@
   <body>
     <%- include("./partials/header.ejs"); %>
 
-    <main>
-      <div class="content">
+    <main class="content">
+      <div class="cards-wrapper">
         <% [...new Array(5)].map(() => { %>
           <%- include("./partials/todo.ejs", { title: 'title', description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio maiores modi, aperiam reiciendis iusto blanditiis, recusandae qui quaerat cupiditate deserunt odit omnis eius aut quos nobis mollitia provident itaque dicta!' }); %>          
         <% }); %>

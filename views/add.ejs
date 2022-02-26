@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link href="/assets/styles/styles.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <%- include("./partials/header.ejs"); %>
+
+    <main class="content">
+      <div class="form-wrapper">
+        <h2 class="form-wrapper__title">Add your new todo</h2>
+        <form class="form" method="post" action="#">
+          <input class="form__input" id="title" name="title" placeholder="Insert todo title" />
+          <textarea class="form__input form__input--large" id="description" name="description" placeholder="Insert todo description"></textarea>
+          <button class="form__submit" type="submit">Add</button>
+        </form>
+      </div>
+    </main>
+
+    <%- include("./partials/footer.ejs"); %>
+  </body>
+</html>

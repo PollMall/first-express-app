@@ -25,11 +25,6 @@
   margin-bottom: 10px;
 }
 
-.card__description {
-  /* overflow: hidden;
-  text-overflow: ellipsis; */
-}
-
 .card__expand-action {
   background-color: white;
   border-radius: 50%;
