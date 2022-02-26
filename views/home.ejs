@@ -8,19 +8,19 @@
     <link href="/assets/styles/styles.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
-    <%- include("./partials/header.ejs"); %>
+    <%- include("./partials/header"); %>
 
     <main class="content">
       <div class="cards-wrapper">
         <% [...new Array(5)].map(() => { %>
-          <%- include("./partials/todo.ejs", { title: 'title', description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio maiores modi, aperiam reiciendis iusto blanditiis, recusandae qui quaerat cupiditate deserunt odit omnis eius aut quos nobis mollitia provident itaque dicta!' }); %>          
+          <%- include("./partials/todo", { title: 'title', description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio maiores modi, aperiam reiciendis iusto blanditiis, recusandae qui quaerat cupiditate deserunt odit omnis eius aut quos nobis mollitia provident itaque dicta!' }); %>          
         <% }); %>
         <% [...new Array(6)].map(() => { %>
-          <%- include("./partials/todo.ejs", { title: 'title', description: 'Lorem!' }); %>          
+          <%- include("./partials/todo", { title: 'title', description: 'Lorem!' }); %>          
         <% }); %>
       </div>
     </main>
 
-    <%- include("./partials/footer.ejs"); %>
+    <%- include("./partials/footer"); %>
   </body>
 </html>
