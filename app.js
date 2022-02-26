@@ -15,6 +15,10 @@ app.get("/add", (req, res) => {
   res.render("add");
 });
 
+app.get("/edit", (req, res) => {
+  res.render("edit", { title: "Title", description: "Some description" });
+});
+
 const port = process.env.PORT || 3000;
 
 app.listen(3000, () => {

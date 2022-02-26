@@ -1,6 +1,6 @@
 <div class="form-wrapper">
   <h2 class="form-wrapper__title"><%= title ? 'Edit your todo' : 'Add your new todo' %></h2>
-  <form class="form" method="post" action="/add">
+  <form class="form" method="post" action="<%= action %>">
     <input value="<%= title %>" type="text" class="form__input" id="title" name="title" placeholder="Insert todo title" />
     <textarea class="form__input form__input--large" id="description" name="description" placeholder="Insert todo description"><%= description %></textarea>
     <div class="form__buttons">

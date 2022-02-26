@@ -4,14 +4,14 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Todo | Add</title>
+    <title>Todo | Edit</title>
     <link href="/assets/styles/styles.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
     <%- include("./partials/header.ejs"); %>
 
     <main class="content">
-      <%- include("./partials/form", { title: "", description: "", action: "/add" }) %> 
+      <%- include("./partials/form", { title, description, action: "/edit" }) %> 
     </main>
 
     <%- include("./partials/footer.ejs"); %>
