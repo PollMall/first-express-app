@@ -1,8 +1,15 @@
 <div class="form-wrapper">
-  <h2 class="form-wrapper__title">Add your new todo</h2>
-  <form class="form" method="post" action="#">
-    <input class="form__input" id="title" name="title" placeholder="Insert todo title" />
-    <textarea class="form__input form__input--large" id="description" name="description" placeholder="Insert todo description"></textarea>
-    <button class="form__submit" type="submit">Add</button>
+  <h2 class="form-wrapper__title"><%= title ? 'Edit your todo' : 'Add your new todo' %></h2>
+  <form class="form" method="post" action="/add">
+    <input value="<%= title %>" type="text" class="form__input" id="title" name="title" placeholder="Insert todo title" />
+    <textarea class="form__input form__input--large" id="description" name="description" placeholder="Insert todo description"><%= description %></textarea>
+    <div class="form__buttons">
+      <button class="form__button form__button--save" type="submit">
+        <%= title ? 'Save' : 'Add' %>
+      </button>
+      <% if(title) { %>
+        <button class="form__button form__button--delete" type="submit">Delete</button>
+      <% } %>
+    </div>
   </form>
 </div>

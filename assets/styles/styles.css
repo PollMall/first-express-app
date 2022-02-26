@@ -24,6 +24,9 @@
   --neutral-white-color: #fff;
   --neutral-grey-color: #f5f5f5;
   --neutral-black-color: #000;
+  --danger-color: #f44336;
+  --danger-darker-color: #c0352b;
+  --danger-darkest-color: #80211a;
 }
 
 body {

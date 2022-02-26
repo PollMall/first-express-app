@@ -26,23 +26,44 @@
   height: 200px;
 }
 
-.form__submit {
-  border: 1px solid var(--neutral-black-color);
-  border-radius: 0%;
-  background-color: var(--primary-color);
-  padding: 20px;
+.form__buttons {
+  display: flex;
+  gap: 10px;
   margin-top: 10px;
-  transform: translate(-8px, -8px);
-  box-shadow: 8px 8px var(--secondary-color);
-  transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
 }
 
-.form__submit:hover {
+.form__button {
+  flex: 1;
+  border: 1px solid var(--neutral-black-color);
+  border-radius: 0%;
+  padding: 20px;
+  transform: translate(-8px, -8px);
+  /* box-shadow: 8px 8px var(--secondary-color); */
+  transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
+  font-size: 16px;
+}
+
+.form__button:hover {
   transform: translate(0px, 0px);
   box-shadow: none;
   cursor: pointer;
 }
 
-.form__submit:active {
+.form__button--save {
+  background-color: var(--primary-color);
+  box-shadow: 8px 8px var(--primary-darkest-color);
+}
+
+.form__button--save:active {
   background-color: var(--primary-darker-color);
+}
+
+.form__button--delete {
+  color: var(--neutral-white-color);
+  background-color: var(--danger-color);
+  box-shadow: 8px 8px var(--danger-darkest-color);
+}
+
+.form__button--delete:active {
+  background-color: var(--danger-darker-color);
 }
