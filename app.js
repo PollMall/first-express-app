@@ -15,8 +15,12 @@ app.get("/add", (req, res) => {
   res.render("add");
 });
 
-app.get("/edit", (req, res) => {
-  res.render("edit", { title: "Title", description: "Some description" });
+app.get("/edit/:id", (req, res) => {
+  res.render("edit", { id: req.params.id, title: "Title", description: "Some description" });
+});
+
+app.get("*", (req, res) => {
+  res.status(404).send("Not Found");
 });
 
 const port = process.env.PORT || 3000;
