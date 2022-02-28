@@ -16,7 +16,12 @@ app.get("/add", (req, res) => {
 });
 
 app.get("/edit/:id", (req, res) => {
-  res.render("edit", { id: req.params.id, title: "Title", description: "Some description" });
+  res.render("edit", {
+    id: req.params.id,
+    title: "Title",
+    description:
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur, illum odio. Repudiandae possimus rem, nemo impedit delectus velit facere tempore libero sunt accusamus quae ut! Possimus sint mollitia voluptatum illum?",
+  });
 });
 
 app.get("*", (req, res) => {
