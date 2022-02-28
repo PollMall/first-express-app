@@ -1,50 +1,62 @@
 const express = require("express");
+const bodyParser = require("body-parser");
+const db = require("../db");
 
 const router = express.Router();
 
-const mockData = [
-  {
-    id: 11,
-    title: "Random Title",
-    description: "Some cool description",
-  },
-  {
-    id: 22,
-    title: "Titleee",
-    description:
-      "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Recusandae eius reiciendis, minus repellat vel quasi sit voluptatem repellendus, modi, aspernatur laborum reprehenderit laudantium dignissimos voluptate accusantium magni consequuntur? Cupiditate, maiores?",
-  },
-  {
-    id: 33,
-    title: "Test",
-    description: "Long description",
-  },
-  {
-    id: 44,
-    title: "Lorem ipsum",
-    description: "",
-  },
-];
+router.use(bodyParser.urlencoded({ extended: true }));
+router.use(bodyParser.json());
 
-router.get("/", (req, res) => {
-  res.render("home", { todos: mockData });
+router.get("/", async (req, res) => {
+  res.render("home", { todos: await db.getAll() });
 });
 
-router.get("/add", (req, res) => {
-  res.render("add");
-});
+router
+  .route("/add")
+  .get((req, res) => {
+    res.render("add");
+  })
+  .post((req, res) => {
+    console.log(req.body);
+    if (req.body && req.body.title) {
+      const newTodo = {
+        id: mockData.length + 1,
+        title: req.body.title,
+        description: req.body.description,
+      };
+      mockData.push(newTodo);
+      res.redirect("/");
+    } else {
+      res.send("Please provide at least a title for todo");
+    }
+  });
 
 router.get("/edit/:id", (req, res) => {
-  res.render("edit", {
-    id: req.params.id,
-    title: "Title",
-    description:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur, illum odio. Repudiandae possimus rem, nemo impedit delectus velit facere tempore libero sunt accusamus quae ut! Possimus sint mollitia voluptatum illum?",
-  });
+  const foundTodo = mockData.find((el) => el.id.toString() === req.params.id);
+  if (foundTodo) {
+    res.render("edit", {
+      id: foundTodo.id,
+      title: foundTodo.title,
+      description: foundTodo.description,
+    });
+  } else {
+    res.status(404).send("Not Found");
+  }
+});
+
+router.get("/test", async (req, res) => {
+  res.send(await db.getAll());
 });
 
 router.get("*", (req, res) => {
   res.status(404).send("Not Found");
 });
+
+function validate(req, res) {
+  if (req.body && req.body.title) {
+    return next();
+  }
+  res.status(400).send("Please provide a title for todo");
+}
 
 module.exports = router;
