@@ -1,6 +1,7 @@
 <a class="card-link" href="/edit/<%= id %> ">
   <div class="card">
     <h4 class="card__title""><%= title %> </h4>
-    <div class="card__description"><%- description.length > 90 ? `${description.substring(0, 90)}...` : description %></div>
+    <div class="card__divider"></div>
+    <div class="card__description"><%- description.length > 80 ? `${description.substring(0, 80)}...` : description %></div>
   </div>
 </a>
