@@ -83,7 +83,7 @@ router.get("/test", async (req, res) => {
 });
 
 router.get("*", (req, res) => {
-  res.status(404).send({ error: "Not Found" });
+  res.status(404).render("404");
 });
 
 function validate(req, res) {

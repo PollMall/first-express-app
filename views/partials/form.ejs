@@ -3,12 +3,12 @@
     <%= title ? 'Edit your todo' : 'Add your new todo' %>
   </h2>
   <form class="form">
-    <input value="<%= title %>" type="text" class="form__input" id="title" name="title" placeholder="Insert todo title" />
+    <input required value="<%= title %>" type="text" class="form__input" id="title" name="title" placeholder="Insert todo title" />
 
     <textarea class="form__input form__input--large" id="description" name="description" placeholder="Insert todo description"><%= description %></textarea>
 
     <div class="form__buttons">
-      <button id="submit-btn" class="form__button form__button--save" type="button">
+      <button id="submit-btn" class="form__button form__button--save" type="submit">
         <%= title ? 'Save' : 'Add' %>
       </button>
       
@@ -35,7 +35,6 @@
 
     const redirect = (res) => {
       if (res && res.status === 200) {
-        console.log('redirectoing....');
         location.href = '/';
       } else {
         /* redirect to error page */
@@ -48,7 +47,6 @@
     };
     
     const handleSaveTodo = async (body) => {
-      console.log(body);
       const res = await fetch('/add', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
       redirect(res);
     };
@@ -59,7 +57,7 @@
     };
 
     const handleSubmitForm = async (event) => {
-      event.preventDefault();
+      // event.preventDefault();
 
       const body = createBody();
       if ("<%= action %>" === "/edit") {
