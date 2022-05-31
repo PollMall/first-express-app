@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const db = require("../db");
+const { getTodoById, getAllTodos, saveTodo, updateTodo, removeTodo } = require("../db");
+const { restart } = require("nodemon");
 
 const router = express.Router();
 
@@ -8,7 +9,7 @@ router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 
 router.get("/", async (req, res) => {
-  res.render("home", { todos: await db.getAll() });
+  res.render("home", { todos: await getAllTodos() });
 });
 
 router
@@ -16,40 +17,73 @@ router
   .get((req, res) => {
     res.render("add");
   })
-  .post((req, res) => {
+  .post(async (req, res) => {
     console.log(req.body);
+
     if (req.body && req.body.title) {
       const newTodo = {
-        id: mockData.length + 1,
         title: req.body.title,
         description: req.body.description,
       };
-      mockData.push(newTodo);
-      res.redirect("/");
+      try {
+        await saveTodo(newTodo);
+        res.send({ data: newTodo });
+      } catch (err) {
+        console.error(err);
+        res.status(500).send({ error: "Could not save the todo." });
+      }
     } else {
-      res.send("Please provide at least a title for todo");
+      res.status(400).send({ error: "Please provide at least a title for todo" });
     }
   });
 
-router.get("/edit/:id", (req, res) => {
-  const foundTodo = mockData.find((el) => el.id.toString() === req.params.id);
-  if (foundTodo) {
-    res.render("edit", {
-      id: foundTodo.id,
-      title: foundTodo.title,
-      description: foundTodo.description,
-    });
-  } else {
-    res.status(404).send("Not Found");
-  }
-});
+router
+  .route("/edit/:id")
+  .get(async (req, res) => {
+    const foundTodo = await getTodoById(req.params.id);
+
+    if (foundTodo) {
+      res.render("edit", foundTodo);
+    } else {
+      res.status(404).send({ error: "Not Found" });
+    }
+  })
+  .delete(async (req, res) => {
+    const removedTodo = await removeTodo(req.params.id);
+
+    if (removedTodo) {
+      res.send({ data: removeTodo });
+    } else {
+      res.status(404).send({ error: "Todo not found!", data: {} });
+    }
+  })
+  .put(async (req, res) => {
+    console.log(req.body);
+
+    if (req.body && req.body.title) {
+      const newTodo = {
+        id: req.params.id,
+        title: req.body.title,
+        description: req.body.description,
+      };
+      try {
+        await updateTodo(newTodo);
+        res.send({ data: newTodo });
+      } catch (err) {
+        console.error(err);
+        res.status(500).send({ error: "Could not update the todo." });
+      }
+    } else {
+      res.status(400).send({ error: "Please provide at least a title for todo" });
+    }
+  });
 
 router.get("/test", async (req, res) => {
   res.send(await db.getAll());
 });
 
 router.get("*", (req, res) => {
-  res.status(404).send("Not Found");
+  res.status(404).send({ error: "Not Found" });
 });
 
 function validate(req, res) {

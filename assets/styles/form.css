@@ -38,7 +38,6 @@
   border-radius: 0%;
   padding: 20px;
   transform: translate(-8px, -8px);
-  /* box-shadow: 8px 8px var(--secondary-color); */
   transition: transform 0.1s ease-in-out, box-shadow 0.1s ease-in-out;
   font-size: 16px;
 }

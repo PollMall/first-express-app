@@ -11,11 +11,17 @@
     <%- include("./partials/header"); %>
 
     <main class="content">
+      <h2 class="page-title">
+        Your list of todos
+      </h2>
       <div class="cards-wrapper">
         <% todos.map(({ id, title, description }) => { %>
           <%- include("./partials/todo", { id, title, description }); %>          
         <% }); %>
       </div>
+      <a href="/add">
+        <button class="create-btn">create todo</button>
+      </a>
     </main>
 
     <%- include("./partials/footer"); %>

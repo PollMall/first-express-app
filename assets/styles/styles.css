@@ -1,7 +1,7 @@
 @import url("./header.css");
 @import url("./footer.css");
 @import url("./todo.css");
-@import url("./add.css");
+@import url("./form.css");
 @import url("./home.css");
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap");
 
@@ -37,7 +37,10 @@ body {
 }
 
 .content {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: center;
   padding: 50px 100px;
   padding-bottom: 118px;
-  height: min-content;
 }
