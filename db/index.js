@@ -1,11 +1,13 @@
 const { JsonDB } = require("node-json-db");
 const { nanoid } = require("nanoid");
 
+const dbPath = "todos";
+
 let db;
 
 const getDatabase = async () => {
   if (!db) {
-    db = new JsonDB("db/todos", true, true, "/", true);
+    db = new JsonDB(dbPath, true, true, "/", true);
   }
 
   return db;
