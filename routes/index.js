@@ -1,7 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const { getTodoById, getAllTodos, saveTodo, updateTodo, removeTodo } = require("../db");
-const { restart } = require("nodemon");
 
 const router = express.Router();
 
@@ -45,7 +44,7 @@ router
     if (foundTodo) {
       res.render("edit", foundTodo);
     } else {
-      res.status(404).send({ error: "Not Found" });
+      res.status(404).render("404");
     }
   })
   .delete(async (req, res) => {
