@@ -72,11 +72,16 @@ const updateTodo = async (newTodo) => {
 const removeTodo = async (id) => {
   const db = await getDatabase();
 
-  const existingTodo = db.getData(`/${id}`);
-  if (existingTodo) {
-    db.delete(`/${id}`);
+  try {
+    const existingTodo = db.getData(`/${id}`);
 
-    return existingTodo;
+    if (existingTodo) {
+      db.delete(`/${id}`);
+
+      return existingTodo;
+    }
+  } catch (err) {
+    console.error(err);
   }
 
   return null;

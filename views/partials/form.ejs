@@ -33,11 +33,16 @@
       description: textareaDescription.value,
     })
 
-    const redirect = (res) => {
-      if (res && res.status === 200) {
-        location.href = '/';
-      } else {
-        /* redirect to error page */
+    const redirect = async (res) => {
+      if (res) {
+        switch(res.status) {
+          case "200": 
+            location.href = '/';
+            break;
+          default:
+            const body = await res.json();
+            alert(body.error);
+        }
       }
     }
 
@@ -57,7 +62,7 @@
     };
 
     const handleSubmitForm = async (event) => {
-      // event.preventDefault();
+      event.preventDefault();
 
       const body = createBody();
       if ("<%= action %>" === "/edit") {
